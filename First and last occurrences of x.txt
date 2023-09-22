@@ -1,0 +1,12 @@
+ vector<int> find(int arr[], int n , int x )
+    {
+        // code here
+        int last=upper_bound(arr,arr+n,x)-arr;
+        last=arr[last-1]==x?last-1:-1;
+        
+        int first=lower_bound(arr,arr+n,x)-arr;
+        
+        first=arr[first]== x?first:-1;
+        
+        return {first,last};
+    }
