@@ -1,0 +1,48 @@
+    public ArrayList<ArrayList<Integer>> fourSum(int[] arr, int k) {
+        // code here
+      
+        Arrays.sort(arr);  
+        
+        int n=arr.length;
+        int s=k;
+        ArrayList<ArrayList<Integer>> ans= new ArrayList<>();
+        
+        for(int i=0;i<n-3;i++){
+     
+            for(int j=i+1;j<n-2;j++){
+           
+                 int left=j+1;
+                 int last=n-1;
+                 
+                 while(left<last){
+                     int sum=arr[left]+arr[last]+arr[i]+arr[j];
+                     
+                     if(k==sum){
+                         ArrayList<Integer> a=new ArrayList<>();
+                         a.add(arr[i]);
+                         a.add(arr[j]);
+                         a.add(arr[left]);
+                         a.add(arr[last]);
+                         ans.add(a);
+                          left++;
+                         last--;
+                         while(left< last && arr[left]==arr[left-1]) left++;
+                         
+                         while(last>left && arr[last]==arr[last+1] ) last--;
+                        
+                         
+                     }
+                     else if(k>sum) left++;
+                     else last--;
+                     
+                     while(j<n-2 && arr[j]==arr[j+1])j++;
+                     while(i<n-3 && arr[i]==arr[i+1])i++;
+                         
+                     
+                 }
+            }
+            
+        }
+        
+        return ans;
+    }
