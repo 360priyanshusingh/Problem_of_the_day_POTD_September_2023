@@ -1,0 +1,31 @@
+ static List<Integer> maxCombinations(int N, int k, int A[], int B[]) {
+        // code here
+        Arrays.sort(A);
+        Arrays.sort(B);
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        
+        for(int i=N-1; i > N-k-1 ;i--){
+            for(int j=N-1;j>N-k-1 ; j--){
+                int r=A[i]+B[j];
+                
+                if(pq.size()<k){
+                    pq.add(r);
+                }
+                else{
+                    if(pq.peek()<r){
+                        pq.poll();
+                        pq.add(r);
+                    }
+                    else break;
+                }
+            }
+        }
+        
+        List<Integer> ans = new ArrayList<>();
+        while(!pq.isEmpty()){
+            ans.add(0,pq.peek());
+            pq.poll();
+        }
+        
+        return ans;
+    }
